@@ -1217,6 +1217,112 @@
       backdrop-filter: blur(8px);
     }
 
+    .activity-count-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 9px;
+      border-radius: var(--radius-pill);
+      background: rgba(11, 15, 20, 0.8);
+      color: #F3F6FA;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 600;
+      backdrop-filter: blur(8px);
+    }
+
+    .lightbox-thumbs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 4px 2px 8px;
+      margin-bottom: 10px;
+    }
+
+    .lightbox-thumb-btn {
+      width: 64px;
+      height: 46px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid transparent;
+      opacity: 0.62;
+      transition: opacity var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .lightbox-thumb-btn.active {
+      opacity: 1;
+      border-color: var(--accent);
+      transform: scale(1.03);
+    }
+
+    .lightbox-thumb-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .multi-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .multi-preview-item {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-surface);
+      aspect-ratio: 4 / 3;
+    }
+
+    .multi-preview-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .multi-preview-badge {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      padding: 2px 6px;
+      border-radius: 6px;
+      background: rgba(11, 15, 20, 0.82);
+      color: #34D399;
+      font-size: 0.66rem;
+      font-weight: 700;
+    }
+
+    .multi-preview-actions {
+      position: absolute;
+      right: 5px;
+      bottom: 5px;
+      display: flex;
+      gap: 4px;
+    }
+
+    .multi-mini-btn {
+      padding: 3px 6px;
+      border-radius: 6px;
+      font-size: 0.66rem;
+      font-weight: 700;
+      background: rgba(11, 15, 20, 0.84);
+      color: #F3F6FA;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .multi-mini-btn.danger {
+      background: rgba(220, 38, 38, 0.9);
+      border-color: transparent;
+    }
+
     .activity-body {
       padding: 16px;
       display: flex;
@@ -2100,7 +2206,6 @@
   <footer class="footer">
     <div class="container footer-inner">
       <span>&copy; <span id="footer-year"></span> Santri Strong Cimalela. Tetap Istiqamah &amp; Solid.</span>
-      <span>Tampilan responsif &bull; Siap dipasang di Layar Utama HP</span>
     </div>
   </footer>
 
@@ -2535,7 +2640,16 @@
       let editingActivityId = null;
       let editingSessionId = null;
       let tempPhotoDataUrl = '';
+      let tempActivityPhotos = [];
       let pinBuffer = '';
+
+      function getActivityPhotos(act) {
+        if (!act) return [];
+        if (Array.isArray(act.photos) && act.photos.length) {
+          return act.photos.filter(Boolean);
+        }
+        return act.photo ? [act.photo] : [];
+      }
 
       let firebaseDb = null;
       let firebaseConnected = false;
@@ -3261,58 +3375,93 @@
           return;
         }
 
-        grid.innerHTML = filtered.map((act) => `
-          <button type="button" class="activity-card" data-activity-id="${escapeHtml(act.id)}">
-            <div class="activity-thumb">
-              <img src="${escapeHtml(act.photo)}" alt="${escapeHtml(act.title)}" loading="lazy" />
-              <span class="activity-cat">${escapeHtml(act.category)}</span>
-            </div>
-            <div class="activity-body">
-              <span class="activity-date">${formatDateID(act.date)}</span>
-              <h3 class="activity-title">${escapeHtml(act.title)}</h3>
-              <p class="activity-desc">${escapeHtml(act.description || 'Dokumentasi kegiatan Santri Strong Cimalela.')}</p>
-            </div>
-          </button>
-        `).join('');
+        grid.innerHTML = filtered.map((act) => {
+          const photos = getActivityPhotos(act);
+          const cover = photos[0] || svgPoster(act.title, act.category, '#10B981');
+          const countBadge = photos.length > 1
+            ? `<span class="activity-count-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><path d="m4 16 4-4 4 4 4-4 4 4"/></svg>
+                ${photos.length} Foto
+              </span>`
+            : '';
+          return `
+            <button type="button" class="activity-card" data-activity-id="${escapeHtml(act.id)}">
+              <div class="activity-thumb">
+                <img src="${escapeHtml(cover)}" alt="${escapeHtml(act.title)}" loading="lazy" />
+                <span class="activity-cat">${escapeHtml(act.category)}</span>
+                ${countBadge}
+              </div>
+              <div class="activity-body">
+                <span class="activity-date">${formatDateID(act.date)}</span>
+                <h3 class="activity-title">${escapeHtml(act.title)}</h3>
+                <p class="activity-desc">${escapeHtml(act.description || 'Dokumentasi kegiatan Santri Strong Cimalela.')}</p>
+              </div>
+            </button>
+          `;
+        }).join('');
 
         grid.querySelectorAll('[data-activity-id]').forEach((card) => {
-          card.addEventListener('click', () => openLightbox(card.getAttribute('data-activity-id')));
+          card.addEventListener('click', () => openLightbox(card.getAttribute('data-activity-id'), 0));
         });
       }
 
-      function openLightbox(actId) {
+      function openLightbox(actId, photoIdx = 0) {
         const sorted = [...state.activities].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
         const filtered = activityFilter === 'Semua' ? sorted : sorted.filter((a) => a.category === activityFilter);
-        const idx = filtered.findIndex((a) => a.id === actId);
-        if (idx === -1) return;
-        const act = filtered[idx];
+        const actIdx = filtered.findIndex((a) => a.id === actId);
+        if (actIdx === -1) return;
+        const act = filtered[actIdx];
+        const photos = getActivityPhotos(act);
+        const safePhotoIdx = photos.length ? ((photoIdx % photos.length) + photos.length) % photos.length : 0;
+        const activePhoto = photos[safePhotoIdx] || svgPoster(act.title, act.category, '#10B981');
 
         document.getElementById('lightbox-title').textContent = act.title;
         document.getElementById('lightbox-body').innerHTML = `
           <div class="lightbox-img-wrap">
-            <img src="${escapeHtml(act.photo)}" alt="${escapeHtml(act.title)}" />
+            <img src="${escapeHtml(activePhoto)}" alt="${escapeHtml(act.title)} (${safePhotoIdx + 1})" />
           </div>
+          ${photos.length > 1 ? `
+            <div class="lightbox-thumbs" id="lb-thumbs">
+              ${photos.map((p, i) => `
+                <button type="button" class="lightbox-thumb-btn ${i === safePhotoIdx ? 'active' : ''}" data-lb-photo="${i}" aria-label="Foto ${i + 1}">
+                  <img src="${escapeHtml(p)}" alt="Thumbnail ${i + 1}" />
+                </button>
+              `).join('')}
+            </div>
+          ` : ''}
           <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px">
-            <div style="display:flex;gap:8px;align-items:center">
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
               <span class="pill pill-accent">${escapeHtml(act.category)}</span>
               <span style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted)">${formatDateID(act.date)}</span>
+              ${photos.length > 1 ? `<span class="pill" style="font-family:var(--font-mono)">Foto ${safePhotoIdx + 1}/${photos.length}</span>` : ''}
             </div>
             <div style="display:flex;gap:8px">
-              <button type="button" class="btn btn-secondary btn-sm" id="lb-prev" ${filtered.length <= 1 ? 'disabled' : ''}>← Sebelumnya</button>
-              <button type="button" class="btn btn-secondary btn-sm" id="lb-next" ${filtered.length <= 1 ? 'disabled' : ''}>Berikutnya →</button>
+              ${photos.length > 1 ? `
+                <button type="button" class="btn btn-secondary btn-sm" id="lb-prev">← Foto</button>
+                <button type="button" class="btn btn-secondary btn-sm" id="lb-next">Foto →</button>
+              ` : `
+                <button type="button" class="btn btn-secondary btn-sm" id="lb-prev" ${filtered.length <= 1 ? 'disabled' : ''}>← Sebelumnya</button>
+                <button type="button" class="btn btn-secondary btn-sm" id="lb-next" ${filtered.length <= 1 ? 'disabled' : ''}>Berikutnya →</button>
+              `}
             </div>
           </div>
           <p style="color:var(--text-secondary);font-size:0.92rem">${escapeHtml(act.description || '')}</p>
         `;
 
-        if (filtered.length > 1) {
+        if (photos.length > 1) {
+          document.getElementById('lb-prev').addEventListener('click', () => openLightbox(actId, safePhotoIdx - 1));
+          document.getElementById('lb-next').addEventListener('click', () => openLightbox(actId, safePhotoIdx + 1));
+          document.querySelectorAll('[data-lb-photo]').forEach((btn) => {
+            btn.addEventListener('click', () => openLightbox(actId, Number(btn.getAttribute('data-lb-photo'))));
+          });
+        } else if (filtered.length > 1) {
           document.getElementById('lb-prev').addEventListener('click', () => {
-            const prevIdx = (idx - 1 + filtered.length) % filtered.length;
-            openLightbox(filtered[prevIdx].id);
+            const prevIdx = (actIdx - 1 + filtered.length) % filtered.length;
+            openLightbox(filtered[prevIdx].id, 0);
           });
           document.getElementById('lb-next').addEventListener('click', () => {
-            const nextIdx = (idx + 1) % filtered.length;
-            openLightbox(filtered[nextIdx].id);
+            const nextIdx = (actIdx + 1) % filtered.length;
+            openLightbox(filtered[nextIdx].id, 0);
           });
         }
         openModal('lightbox-modal');
@@ -3448,6 +3597,7 @@
           editingActivityId = null;
           editingSessionId = null;
           tempPhotoDataUrl = '';
+          tempActivityPhotos = [];
           renderAdminTab();
         });
       });
@@ -3777,11 +3927,14 @@
         });
       }
 
-      /* --- TAB 3: GALERI KEGIATAN --- */
+      /* --- TAB 3: GALERI KEGIATAN (MULTI-FOTO) --- */
       function renderAdminGaleri(container) {
         const editing = editingActivityId ? state.activities.find((a) => a.id === editingActivityId) : null;
-        if (editing && !tempPhotoDataUrl) tempPhotoDataUrl = editing.photo || '';
+        if (editing && !tempActivityPhotos.length) {
+          tempActivityPhotos = [...getActivityPhotos(editing)];
+        }
         const today = new Date().toISOString().slice(0, 10);
+        const totalKb = tempActivityPhotos.reduce((acc, p) => acc + estimateKb(p), 0);
 
         container.innerHTML = `
           <form id="activity-form">
@@ -3808,59 +3961,126 @@
                 <input type="text" id="act-desc" class="input" value="${escapeHtml(editing ? (editing.description || '') : '')}" placeholder="Ceritakan momen kegiatan..." />
               </div>
               <div class="form-group full">
-                <label class="form-label" for="act-photo-input">Pilih Foto Kegiatan (Otomatis terkompres)</label>
-                <div class="upload-preview">
-                  <img id="act-photo-preview" src="${escapeHtml(tempPhotoDataUrl || svgPoster('Pilih Foto', 'Kegiatan', '#10B981'))}" alt="Preview kegiatan" style="width:96px;height:64px" />
-                  <div style="flex:1;min-width:0">
-                    <input type="file" id="act-photo-input" accept="image/*" class="input" style="padding:7px" ${editing ? '' : 'required'} />
-                    <div class="form-hint" id="act-photo-hint" style="margin-top:4px">${tempPhotoDataUrl ? `Ukuran foto: ~${estimateKb(tempPhotoDataUrl)} KB` : 'Maksimal lebar otomatis disesuaikan ke 960px agar hemat kuota.'}</div>
+                <label class="form-label" for="act-photo-input">Pilih Foto Kegiatan — Bisa pilih banyak sekaligus (maks. 12 foto)</label>
+                <div style="padding:12px;border-radius:var(--radius-control);background:var(--bg-surface-2);border:1px dashed var(--border-strong)">
+                  <input type="file" id="act-photo-input" accept="image/*" multiple class="input" style="padding:7px" />
+                  <div class="form-hint" id="act-photo-hint" style="margin-top:6px">
+                    ${tempActivityPhotos.length
+                      ? `${tempActivityPhotos.length} foto siap disimpan (Total ~${totalKb} KB). Pilih file lagi untuk menambah foto.`
+                      : 'Pilih 1 atau beberapa foto sekaligus dari galeri HP/PC (otomatis dikompres ringan).'}
                   </div>
+                  <div id="act-multi-preview"></div>
                 </div>
               </div>
             </div>
-            <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
-              <button type="submit" class="btn btn-primary">${editing ? 'Simpan Perubahan Foto' : 'Tambahkan ke Galeri'}</button>
+            <div class="form-actions-row">
+              <button type="submit" class="btn btn-primary">${editing ? 'Simpan Perubahan' : 'Tambahkan ke Galeri'}</button>
               ${editing ? '<button type="button" class="btn btn-secondary" id="act-cancel-edit">Batal Edit</button>' : ''}
             </div>
           </form>
 
           <hr style="border:none;border-top:1px solid var(--border-subtle);margin:22px 0" />
-          <h4 style="font-family:var(--font-display);font-size:0.95rem;margin-bottom:8px">Daftar Foto Kegiatan (${state.activities.length})</h4>
+          <h4 style="font-family:var(--font-display);font-size:0.95rem;margin-bottom:8px">Daftar Dokumentasi Kegiatan (${state.activities.length})</h4>
           <div class="admin-list">
-            ${state.activities.map((act) => `
-              <div class="admin-item">
-                <div class="admin-item-info">
-                  <img src="${escapeHtml(act.photo)}" alt="${escapeHtml(act.title)}" style="width:56px;height:40px;object-fit:cover;border-radius:8px;flex-shrink:0" />
-                  <div style="min-width:0">
-                    <div style="font-weight:600;font-size:0.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${escapeHtml(act.title)}</div>
-                    <div style="font-size:0.76rem;color:var(--text-muted)">${formatDateID(act.date)} &bull; ${escapeHtml(act.category)}</div>
+            ${state.activities.map((act) => {
+              const photos = getActivityPhotos(act);
+              const cover = photos[0] || svgPoster(act.title, act.category, '#10B981');
+              return `
+                <div class="admin-item">
+                  <div class="admin-item-info">
+                    <img src="${escapeHtml(cover)}" alt="${escapeHtml(act.title)}" style="width:56px;height:40px;object-fit:cover;border-radius:8px;flex-shrink:0" />
+                    <div style="min-width:0">
+                      <div style="font-weight:600;font-size:0.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${escapeHtml(act.title)}</div>
+                      <div style="font-size:0.76rem;color:var(--text-muted)">${formatDateID(act.date)} &bull; ${escapeHtml(act.category)} &bull; ${photos.length} Foto</div>
+                    </div>
+                  </div>
+                  <div class="admin-item-actions">
+                    <button type="button" class="btn btn-secondary btn-sm" data-edit-act="${escapeHtml(act.id)}">Edit</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-del-act="${escapeHtml(act.id)}">Hapus</button>
                   </div>
                 </div>
-                <div class="admin-item-actions">
-                  <button type="button" class="btn btn-secondary btn-sm" data-edit-act="${escapeHtml(act.id)}">Edit</button>
-                  <button type="button" class="btn btn-danger btn-sm" data-del-act="${escapeHtml(act.id)}">Hapus</button>
-                </div>
-              </div>
-            `).join('')}
+              `;
+            }).join('')}
           </div>
         `;
 
+        function renderMultiPreview() {
+          const wrap = document.getElementById('act-multi-preview');
+          const hint = document.getElementById('act-photo-hint');
+          const kb = tempActivityPhotos.reduce((acc, p) => acc + estimateKb(p), 0);
+          hint.textContent = tempActivityPhotos.length
+            ? `${tempActivityPhotos.length} foto siap disimpan (Total ~${kb} KB). Pilih file lagi untuk menambah foto.`
+            : 'Pilih 1 atau beberapa foto sekaligus dari galeri HP/PC (otomatis dikompres ringan).';
+
+          if (!tempActivityPhotos.length) {
+            wrap.innerHTML = '';
+            return;
+          }
+          wrap.innerHTML = `
+            <div class="multi-preview-grid">
+              ${tempActivityPhotos.map((src, idx) => `
+                <div class="multi-preview-item">
+                  <img src="${escapeHtml(src)}" alt="Preview ${idx + 1}" />
+                  <span class="multi-preview-badge">${idx === 0 ? 'Sampul' : '#' + (idx + 1)}</span>
+                  <div class="multi-preview-actions">
+                    ${idx > 0 ? `<button type="button" class="multi-mini-btn" data-make-cover="${idx}" title="Jadikan foto sampul">Sampul</button>` : ''}
+                    <button type="button" class="multi-mini-btn danger" data-remove-photo="${idx}" title="Hapus foto">&times;</button>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          `;
+
+          wrap.querySelectorAll('[data-make-cover]').forEach((b) => {
+            b.addEventListener('click', () => {
+              const i = Number(b.getAttribute('data-make-cover'));
+              const [picked] = tempActivityPhotos.splice(i, 1);
+              tempActivityPhotos.unshift(picked);
+              renderMultiPreview();
+            });
+          });
+
+          wrap.querySelectorAll('[data-remove-photo]').forEach((b) => {
+            b.addEventListener('click', () => {
+              const i = Number(b.getAttribute('data-remove-photo'));
+              tempActivityPhotos.splice(i, 1);
+              renderMultiPreview();
+            });
+          });
+        }
+
+        renderMultiPreview();
+
         document.getElementById('act-photo-input').addEventListener('change', async (e) => {
-          const file = e.target.files[0];
-          if (!file) return;
+          const files = Array.from(e.target.files || []);
+          if (!files.length) return;
+          const remaining = 12 - tempActivityPhotos.length;
+          if (remaining <= 0) {
+            showToast('Maksimal 12 foto per kegiatan.', true);
+            e.target.value = '';
+            return;
+          }
+          const slice = files.slice(0, remaining);
+          if (files.length > remaining) {
+            showToast(`Hanya ${remaining} foto pertama ditambahkan (maks. 12 foto/kegiatan).`, true);
+          }
           try {
-            tempPhotoDataUrl = await compressImageFile(file, 960, 720, 0.78, false);
-            document.getElementById('act-photo-preview').src = tempPhotoDataUrl;
-            document.getElementById('act-photo-hint').textContent = `Foto siap unggah (~${estimateKb(tempPhotoDataUrl)} KB)`;
+            for (const file of slice) {
+              const compressed = await compressImageFile(file, 960, 720, 0.78, false);
+              tempActivityPhotos.push(compressed);
+            }
+            renderMultiPreview();
           } catch (err) {
             showToast(err.message, true);
+          } finally {
+            e.target.value = '';
           }
         });
 
         if (document.getElementById('act-cancel-edit')) {
           document.getElementById('act-cancel-edit').addEventListener('click', () => {
             editingActivityId = null;
-            tempPhotoDataUrl = '';
+            tempActivityPhotos = [];
             renderAdminGaleri(container);
           });
         }
@@ -3871,22 +4091,31 @@
           const date = document.getElementById('act-date').value;
           const category = document.getElementById('act-cat').value;
           const description = document.getElementById('act-desc').value.trim();
-          if (!title || !tempPhotoDataUrl) {
-            showToast('Judul dan foto wajib diisi.', true);
+          if (!title || !tempActivityPhotos.length) {
+            showToast('Judul dan minimal 1 foto wajib diisi.', true);
             return;
           }
+
+          const payload = {
+            title,
+            date,
+            category,
+            description,
+            photo: tempActivityPhotos[0],
+            photos: [...tempActivityPhotos]
+          };
 
           if (editingActivityId) {
             const idx = state.activities.findIndex((a) => a.id === editingActivityId);
             if (idx !== -1) {
-              state.activities[idx] = { id: editingActivityId, title, date, category, description, photo: tempPhotoDataUrl };
+              state.activities[idx] = { id: editingActivityId, ...payload };
             }
             editingActivityId = null;
-            tempPhotoDataUrl = '';
+            tempActivityPhotos = [];
             await persistState('Dokumentasi kegiatan diperbarui.');
           } else {
-            state.activities.push({ id: uid('act'), title, date, category, description, photo: tempPhotoDataUrl });
-            tempPhotoDataUrl = '';
+            state.activities.push({ id: uid('act'), ...payload });
+            tempActivityPhotos = [];
             await persistState('Foto kegiatan ditambahkan ke galeri.');
           }
           renderAdminGaleri(container);
@@ -3896,8 +4125,9 @@
           btn.addEventListener('click', () => {
             editingActivityId = btn.getAttribute('data-edit-act');
             const found = state.activities.find((a) => a.id === editingActivityId);
-            tempPhotoDataUrl = found ? (found.photo || '') : '';
+            tempActivityPhotos = found ? [...getActivityPhotos(found)] : [];
             renderAdminGaleri(container);
+            scrollToAdminForm(container, 'act-title', 'activity-form');
           });
         });
 
@@ -3907,7 +4137,7 @@
             state.activities = state.activities.filter((a) => a.id !== id);
             if (editingActivityId === id) {
               editingActivityId = null;
-              tempPhotoDataUrl = '';
+              tempActivityPhotos = [];
             }
             await persistState('Foto kegiatan dihapus.');
             renderAdminGaleri(container);
@@ -3918,7 +4148,7 @@
       /* --- TAB 4: PENGATURAN UMUM --- */
       function renderAdminPengaturan(container) {
         container.innerHTML = `
-          <h4 style="font-family:var(--font-display);font-size:0.98rem;margin-bottom:10px">1. Tambah Kalimat Motivasi / Hadits Pembuka</h4>
+          <h4 style="font-family:var(--font-display);font-size:0.98rem;margin-bottom:10px">Tambah Kalimat Motivasi / Hadits Pembuka</h4>
           <form id="quote-add-form" style="margin-bottom:16px">
             <div class="form-grid">
               <div class="form-group full">
@@ -3951,24 +4181,6 @@
               </div>
             `).join('')}
           </div>
-
-          <hr style="border:none;border-top:1px solid var(--border-subtle);margin:20px 0" />
-          <h4 style="font-family:var(--font-display);font-size:0.98rem;margin-bottom:10px">2. Ubah PIN Panel Admin &amp; Backup Data</h4>
-          <form id="pin-change-form" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin-bottom:16px">
-            <div class="form-group" style="flex:1 1 160px">
-              <label class="form-label" for="new-pin-input">PIN Admin Baru (4–8 Angka)</label>
-              <input type="password" inputmode="numeric" pattern="[0-9]{4,8}" id="new-pin-input" class="input" placeholder="Contoh: 1924" required />
-            </div>
-            <button type="submit" class="btn btn-secondary">Ganti PIN</button>
-          </form>
-
-          <div style="display:flex;flex-wrap:wrap;gap:10px">
-            <button type="button" class="btn btn-secondary btn-sm" id="export-json-btn">Export Backup (.json)</button>
-            <label class="btn btn-secondary btn-sm" style="cursor:pointer">
-              Import Backup (.json)
-              <input type="file" id="import-json-input" accept=".json,application/json" class="sr-only" />
-            </label>
-          </div>
         `;
 
         document.getElementById('quote-add-form').addEventListener('submit', async (e) => {
@@ -3992,44 +4204,6 @@
           });
         });
 
-        document.getElementById('pin-change-form').addEventListener('submit', async (e) => {
-          e.preventDefault();
-          const val = document.getElementById('new-pin-input').value.trim();
-          if (!/^\d{4,8}$/.test(val)) {
-            showToast('PIN harus berupa 4 sampai 8 digit angka.', true);
-            return;
-          }
-          state.pinHash = sha256(val);
-          await persistState('PIN Admin berhasil diubah!');
-          document.getElementById('new-pin-input').value = '';
-        });
-
-        document.getElementById('export-json-btn').addEventListener('click', () => {
-          const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = `santri-strong-cimalela-backup-${new Date().toISOString().slice(0, 10)}.json`;
-          a.click();
-          URL.revokeObjectURL(url);
-        });
-
-        document.getElementById('import-json-input').addEventListener('change', (e) => {
-          const file = e.target.files[0];
-          if (!file) return;
-          const reader = new FileReader();
-          reader.onload = async () => {
-            try {
-              const parsed = JSON.parse(reader.result);
-              state = normalizeState(parsed);
-              await persistState('Backup data berhasil dipulihkan!');
-              renderAdminPengaturan(container);
-            } catch {
-              showToast('File JSON tidak valid.', true);
-            }
-          };
-          reader.readAsText(file);
-        });
       }
 
       /* --- TAB 5: FIREBASE (TERPROTEKSI PASSWORD TAMBAHAN) --- */
@@ -4110,6 +4284,24 @@
             </div>
             <button type="submit" class="btn btn-secondary">Simpan Password</button>
           </form>
+
+          <hr style="border:none;border-top:1px solid var(--border-subtle);margin:20px 0" />
+          <h4 style="font-family:var(--font-display);font-size:0.98rem;margin-bottom:10px">3. Ubah PIN Panel Admin &amp; Backup Data</h4>
+          <form id="pin-change-form" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin-bottom:16px">
+            <div class="form-group" style="flex:1 1 160px">
+              <label class="form-label" for="new-pin-input">PIN Admin Baru (4–8 Angka)</label>
+              <input type="password" inputmode="numeric" pattern="[0-9]{4,8}" id="new-pin-input" class="input" placeholder="Contoh: 1924" required />
+            </div>
+            <button type="submit" class="btn btn-secondary">Ganti PIN</button>
+          </form>
+
+          <div style="display:flex;flex-wrap:wrap;gap:10px">
+            <button type="button" class="btn btn-secondary btn-sm" id="export-json-btn">Export Backup (.json)</button>
+            <label class="btn btn-secondary btn-sm" style="cursor:pointer">
+              Import Backup (.json)
+              <input type="file" id="import-json-input" accept=".json,application/json" class="sr-only" />
+            </label>
+          </div>
         `;
 
         document.getElementById('fb-relock-btn').addEventListener('click', () => {
@@ -4211,6 +4403,45 @@
           state.fbPinHash = sha256(val);
           await persistState('Password tab Firebase berhasil diubah!');
           document.getElementById('new-fb-pin-input').value = '';
+        });
+
+        document.getElementById('pin-change-form').addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const val = document.getElementById('new-pin-input').value.trim();
+          if (!/^\d{4,8}$/.test(val)) {
+            showToast('PIN harus berupa 4 sampai 8 digit angka.', true);
+            return;
+          }
+          state.pinHash = sha256(val);
+          await persistState('PIN Admin berhasil diubah!');
+          document.getElementById('new-pin-input').value = '';
+        });
+
+        document.getElementById('export-json-btn').addEventListener('click', () => {
+          const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `santri-strong-cimalela-backup-${new Date().toISOString().slice(0, 10)}.json`;
+          a.click();
+          URL.revokeObjectURL(url);
+        });
+
+        document.getElementById('import-json-input').addEventListener('change', (e) => {
+          const file = e.target.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = async () => {
+            try {
+              const parsed = JSON.parse(reader.result);
+              state = normalizeState(parsed);
+              await persistState('Backup data berhasil dipulihkan!');
+              renderAdminFirebase(container);
+            } catch {
+              showToast('File JSON tidak valid.', true);
+            }
+          };
+          reader.readAsText(file);
         });
       }
 
