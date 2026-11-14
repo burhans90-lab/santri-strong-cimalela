@@ -1199,8 +1199,62 @@
       transition: transform 400ms var(--ease-out);
     }
 
-    .activity-card:hover .activity-thumb img {
+    .activity-slider {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      transition: transform 400ms var(--ease-out);
+    }
+
+    .activity-slider-track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+
+    .activity-slider-track img {
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: none;
+    }
+
+    .activity-card:hover .activity-thumb > img,
+    .activity-card:hover .activity-slider {
       transform: scale(1.04);
+    }
+
+    .activity-slide-dots {
+      position: absolute;
+      left: 50%;
+      bottom: 10px;
+      transform: translateX(-50%);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 8px;
+      border-radius: var(--radius-pill);
+      background: rgba(11, 15, 20, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(6px);
+      z-index: 2;
+    }
+
+    .activity-slide-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.42);
+      transition: width 260ms var(--ease-out), background 260ms var(--ease-out);
+    }
+
+    .activity-slide-dot.active {
+      width: 16px;
+      border-radius: var(--radius-pill);
+      background: var(--accent);
     }
 
     .activity-cat {
@@ -2368,6 +2422,29 @@
     </div>
   </div>
 
+  <!-- ================= MODAL: KONFIRMASI HAPUS ================= -->
+  <div class="modal-backdrop" id="confirm-modal" style="z-index:130" role="dialog" aria-modal="true"
+    aria-labelledby="confirm-modal-title">
+    <div class="modal-dialog modal-sm" style="max-width:420px">
+      <div class="modal-head">
+        <h3 class="modal-title" id="confirm-modal-title">Konfirmasi Hapus</h3>
+        <button type="button" class="icon-btn" data-close-modal="confirm-modal" aria-label="Tutup">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="confirm-modal-msg" style="font-size:0.94rem;color:var(--text-secondary);line-height:1.55;margin-bottom:18px"></p>
+        <div class="form-actions-row" style="justify-content:flex-end;margin-top:0">
+          <button type="button" class="btn btn-secondary" id="confirm-cancel-btn">Batal</button>
+          <button type="button" class="btn btn-danger" id="confirm-ok-btn">Ya, Hapus</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Firebase SDK v10 Compat (Official Google CDN, optional offline fallback built-in) -->
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
@@ -2932,6 +3009,42 @@
         return { lock, unlock };
       })();
 
+      let confirmResolver = null;
+
+      function confirmAction(message, title = 'Konfirmasi Hapus', okLabel = 'Ya, Hapus') {
+        if (typeof confirmResolver === 'function') {
+          const prev = confirmResolver;
+          confirmResolver = null;
+          prev(false);
+        }
+        document.getElementById('confirm-modal-title').textContent = title;
+        document.getElementById('confirm-modal-msg').textContent = message;
+        document.getElementById('confirm-ok-btn').textContent = okLabel;
+        openModal('confirm-modal');
+        setTimeout(() => {
+          const cancelBtn = document.getElementById('confirm-cancel-btn');
+          if (cancelBtn) cancelBtn.focus();
+        }, 60);
+        return new Promise((resolve) => {
+          confirmResolver = resolve;
+        });
+      }
+
+      document.getElementById('confirm-ok-btn').addEventListener('click', () => {
+        if (typeof confirmResolver === 'function') {
+          const res = confirmResolver;
+          confirmResolver = null;
+          closeModal('confirm-modal');
+          res(true);
+        } else {
+          closeModal('confirm-modal');
+        }
+      });
+
+      document.getElementById('confirm-cancel-btn').addEventListener('click', () => {
+        closeModal('confirm-modal');
+      });
+
       function openModal(id) {
         const el = document.getElementById(id);
         if (!el) return;
@@ -2945,6 +3058,11 @@
         el.classList.remove('open');
         if (id === 'admin-modal') {
           firebaseTabUnlocked = false;
+        }
+        if (id === 'confirm-modal' && typeof confirmResolver === 'function') {
+          const res = confirmResolver;
+          confirmResolver = null;
+          res(false);
         }
         ScrollLock.unlock();
       }
@@ -3361,7 +3479,45 @@
         openModal('photo-zoom-modal');
       }
 
+      let gallerySlideTimer = null;
+
+      function stopGalleryAutoSlide() {
+        if (gallerySlideTimer) {
+          clearInterval(gallerySlideTimer);
+          gallerySlideTimer = null;
+        }
+      }
+
+      function setCardSlide(card, idx) {
+        const track = card.querySelector('.activity-slider-track');
+        if (!track) return;
+        const count = Number(track.getAttribute('data-slide-count') || 1);
+        const safeIdx = ((idx % count) + count) % count;
+        card.setAttribute('data-slide-idx', String(safeIdx));
+        track.style.transform = `translateX(-${safeIdx * 100}%)`;
+        card.querySelectorAll('.activity-slide-dot').forEach((dot, dIdx) => {
+          dot.classList.toggle('active', dIdx === safeIdx);
+        });
+        const counter = card.querySelector('.activity-slide-counter');
+        if (counter) counter.textContent = `${safeIdx + 1}/${count} Foto`;
+      }
+
+      function startGalleryAutoSlide() {
+        stopGalleryAutoSlide();
+        const multiCards = Array.from(document.querySelectorAll('#gallery-grid .activity-card[data-has-slider="1"]'));
+        if (!multiCards.length) return;
+        gallerySlideTimer = setInterval(() => {
+          if (document.hidden || document.querySelector('.modal-backdrop.open')) return;
+          multiCards.forEach((card) => {
+            if (card.getAttribute('data-paused') === 'true') return;
+            const cur = Number(card.getAttribute('data-slide-idx') || 0);
+            setCardSlide(card, cur + 1);
+          });
+        }, 3200);
+      }
+
       function renderGallery() {
+        stopGalleryAutoSlide();
         const grid = document.getElementById('gallery-grid');
         const sorted = [...state.activities].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
         const filtered = activityFilter === 'Semua'
@@ -3377,17 +3533,28 @@
 
         grid.innerHTML = filtered.map((act) => {
           const photos = getActivityPhotos(act);
+          const hasMulti = photos.length > 1;
           const cover = photos[0] || svgPoster(act.title, act.category, '#10B981');
-          const countBadge = photos.length > 1
+          const mediaHtml = hasMulti
+            ? `<div class="activity-slider">
+                <div class="activity-slider-track" data-slide-count="${photos.length}" style="transform:translateX(0%)">
+                  ${photos.map((p, i) => `<img src="${escapeHtml(p)}" alt="${escapeHtml(act.title)} (${i + 1})" loading="lazy" />`).join('')}
+                </div>
+              </div>
+              <div class="activity-slide-dots" aria-hidden="true">
+                ${photos.map((_, i) => `<span class="activity-slide-dot ${i === 0 ? 'active' : ''}"></span>`).join('')}
+              </div>`
+            : `<img src="${escapeHtml(cover)}" alt="${escapeHtml(act.title)}" loading="lazy" />`;
+          const countBadge = hasMulti
             ? `<span class="activity-count-badge">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><path d="m4 16 4-4 4 4 4-4 4 4"/></svg>
-                ${photos.length} Foto
+                <span class="activity-slide-counter">1/${photos.length} Foto</span>
               </span>`
             : '';
           return `
-            <button type="button" class="activity-card" data-activity-id="${escapeHtml(act.id)}">
+            <button type="button" class="activity-card" data-activity-id="${escapeHtml(act.id)}" data-has-slider="${hasMulti ? '1' : '0'}" data-slide-idx="0">
               <div class="activity-thumb">
-                <img src="${escapeHtml(cover)}" alt="${escapeHtml(act.title)}" loading="lazy" />
+                ${mediaHtml}
                 <span class="activity-cat">${escapeHtml(act.category)}</span>
                 ${countBadge}
               </div>
@@ -3401,8 +3568,17 @@
         }).join('');
 
         grid.querySelectorAll('[data-activity-id]').forEach((card) => {
-          card.addEventListener('click', () => openLightbox(card.getAttribute('data-activity-id'), 0));
+          card.addEventListener('mouseenter', () => card.setAttribute('data-paused', 'true'));
+          card.addEventListener('mouseleave', () => card.setAttribute('data-paused', 'false'));
+          card.addEventListener('touchstart', () => card.setAttribute('data-paused', 'true'), { passive: true });
+          card.addEventListener('touchend', () => card.setAttribute('data-paused', 'false'), { passive: true });
+          card.addEventListener('click', () => {
+            const slideIdx = Number(card.getAttribute('data-slide-idx') || 0);
+            openLightbox(card.getAttribute('data-activity-id'), slideIdx);
+          });
         });
+
+        startGalleryAutoSlide();
       }
 
       function openLightbox(actId, photoIdx = 0) {
@@ -3768,6 +3944,10 @@
         container.querySelectorAll('[data-del-ses]').forEach((btn) => {
           btn.addEventListener('click', async () => {
             const id = btn.getAttribute('data-del-ses');
+            const target = state.sessions.find((s) => s.id === id);
+            const label = target ? `"${target.topic}" (${formatDateID(target.date)})` : 'pertemuan ini';
+            const ok = await confirmAction(`Yakin ingin menghapus catatan pertemuan ${label}? Data absensi pertemuan ini akan hilang.`);
+            if (!ok) return;
             state.sessions = state.sessions.filter((s) => s.id !== id);
             if (editingSessionId === id) editingSessionId = null;
             await persistState('Pertemuan dihapus.');
@@ -3862,7 +4042,9 @@
         });
 
         if (document.getElementById('st-photo-clear')) {
-          document.getElementById('st-photo-clear').addEventListener('click', () => {
+          document.getElementById('st-photo-clear').addEventListener('click', async () => {
+            const ok = await confirmAction('Yakin ingin menghapus foto profil santri ini?');
+            if (!ok) return;
             tempPhotoDataUrl = '';
             if (editing) editing.photo = '';
             renderAdminSantri(container);
@@ -3916,6 +4098,10 @@
         container.querySelectorAll('[data-del-st]').forEach((btn) => {
           btn.addEventListener('click', async () => {
             const id = btn.getAttribute('data-del-st');
+            const target = state.students.find((s) => s.id === id);
+            const nameLabel = target ? `"${target.name}"` : 'santri ini';
+            const ok = await confirmAction(`Yakin ingin menghapus data santri ${nameLabel}?`);
+            if (!ok) return;
             state.students = state.students.filter((s) => s.id !== id);
             if (editingStudentId === id) {
               editingStudentId = null;
@@ -4041,8 +4227,10 @@
           });
 
           wrap.querySelectorAll('[data-remove-photo]').forEach((b) => {
-            b.addEventListener('click', () => {
+            b.addEventListener('click', async () => {
               const i = Number(b.getAttribute('data-remove-photo'));
+              const ok = await confirmAction(`Hapus foto #${i + 1} dari daftar unggahan kegiatan ini?`);
+              if (!ok) return;
               tempActivityPhotos.splice(i, 1);
               renderMultiPreview();
             });
@@ -4134,6 +4322,10 @@
         container.querySelectorAll('[data-del-act]').forEach((btn) => {
           btn.addEventListener('click', async () => {
             const id = btn.getAttribute('data-del-act');
+            const target = state.activities.find((a) => a.id === id);
+            const titleLabel = target ? `"${target.title}"` : 'kegiatan ini';
+            const ok = await confirmAction(`Yakin ingin menghapus dokumentasi kegiatan ${titleLabel} beserta fotonya?`);
+            if (!ok) return;
             state.activities = state.activities.filter((a) => a.id !== id);
             if (editingActivityId === id) {
               editingActivityId = null;
@@ -4198,6 +4390,8 @@
         container.querySelectorAll('[data-del-quote]').forEach((btn) => {
           btn.addEventListener('click', async () => {
             const id = btn.getAttribute('data-del-quote');
+            const ok = await confirmAction('Yakin ingin menghapus kalimat motivasi / hadits ini?');
+            if (!ok) return;
             state.quotes = state.quotes.filter((q) => q.id !== id);
             await persistState('Motivasi dihapus.');
             renderAdminPengaturan(container);
@@ -4309,10 +4503,12 @@
           renderAdminFirebase(container);
         });
 
-        document.getElementById('fb-config-form').addEventListener('submit', (e) => {
+        document.getElementById('fb-config-form').addEventListener('submit', async (e) => {
           e.preventDefault();
           const rawText = document.getElementById('fb-json-input').value.trim();
           if (!rawText) {
+            const ok = await confirmAction('Kosongkan dan hapus konfigurasi Firebase lokal di browser ini?', 'Konfirmasi Hapus Config', 'Ya, Kosongkan');
+            if (!ok) return;
             localStorage.removeItem(STORAGE_KEYS.FB_CONFIG);
             initFirebase();
             showToast('Konfigurasi Firebase lokal dihapus.');
