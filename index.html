@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id" data-theme="dark">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -7,17 +8,22 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Santri Strong" />
-  <meta name="description" content="Portal komunitas kajian remaja Santri Strong Cimalela — Galeri biodata santri, dokumentasi kegiatan, motivasi harian, dan statistik kehadiran." />
+  <meta name="description"
+    content="Portal komunitas kajian remaja Santri Strong Cimalela — Galeri biodata santri, dokumentasi kegiatan, motivasi harian, dan statistik kehadiran." />
   <title>Santri Strong Cimalela</title>
 
   <!-- Inline SVG Favicon & Apple Touch Icon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230B0F14'/%3E%3Cpath d='M32 10L50 18V32C50 43.2 42.3 51.8 32 55C21.7 51.8 14 43.2 14 32V18L32 10Z' fill='%2310B981' fill-opacity='0.18' stroke='%2310B981' stroke-width='3'/%3E%3Cpath d='M25 32.5L30 37.5L40 26.5' stroke='%2310B981' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E" />
-  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%230B0F14'/%3E%3Cpath d='M90 30L140 52V90C140 121 118 145 90 154C62 145 40 121 40 90V52L90 30Z' fill='%2310B981' fill-opacity='0.2' stroke='%2310B981' stroke-width='8'/%3E%3Cpath d='M70 91L84 105L112 75' stroke='%2310B981' stroke-width='10' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E" />
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230B0F14'/%3E%3Cpath d='M32 10L50 18V32C50 43.2 42.3 51.8 32 55C21.7 51.8 14 43.2 14 32V18L32 10Z' fill='%2310B981' fill-opacity='0.18' stroke='%2310B981' stroke-width='3'/%3E%3Cpath d='M25 32.5L30 37.5L40 26.5' stroke='%2310B981' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E" />
+  <link rel="apple-touch-icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%230B0F14'/%3E%3Cpath d='M90 30L140 52V90C140 121 118 145 90 154C62 145 40 121 40 90V52L90 30Z' fill='%2310B981' fill-opacity='0.2' stroke='%2310B981' stroke-width='8'/%3E%3Cpath d='M70 91L84 105L112 75' stroke='%2310B981' stroke-width='10' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E" />
 
   <!-- Optional Crisp Typography with Instant System Fallback -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap"
+    rel="stylesheet" />
 
   <style>
     /* =========================================================
@@ -112,7 +118,9 @@
     /* =========================================================
        BASE & RESET
        ========================================================= */
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -139,7 +147,10 @@
       max-width: 100%;
     }
 
-    button, input, select, textarea {
+    button,
+    input,
+    select,
+    textarea {
       font: inherit;
       color: inherit;
     }
@@ -193,13 +204,19 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
+      html {
+        scroll-behavior: auto;
+      }
+
       [data-reveal] {
         opacity: 1;
         transform: none;
         transition: none;
       }
-      *, *::before, *::after {
+
+      *,
+      *::before,
+      *::after {
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
       }
@@ -577,6 +594,7 @@
         min-height: auto;
         padding-top: 24px;
       }
+
       .hero-grid {
         grid-template-columns: 1fr;
         gap: 24px;
@@ -624,6 +642,20 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .hero-ctas {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .hero-ctas .btn {
+        width: 100%;
+        padding: 11px 10px;
+        font-size: 0.84rem;
+      }
     }
 
     /* Motivation / Hadith Card */
@@ -920,7 +952,9 @@
       pointer-events: none;
     }
 
-    .input, select, textarea {
+    .input,
+    select,
+    textarea {
       width: 100%;
       background: var(--bg-surface);
       border: 1px solid var(--border-strong);
@@ -931,11 +965,14 @@
       transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
     }
 
-    .input::placeholder, textarea::placeholder {
+    .input::placeholder,
+    textarea::placeholder {
       color: var(--text-muted);
     }
 
-    .input:focus, select:focus, textarea:focus {
+    .input:focus,
+    select:focus,
+    textarea:focus {
       outline: none;
       border-color: var(--accent);
       box-shadow: 0 0 0 3px var(--accent-soft);
@@ -994,6 +1031,18 @@
       }
     }
 
+    @keyframes cardReveal {
+      from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.97);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
     .student-card {
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
@@ -1004,7 +1053,9 @@
       gap: 14px;
       text-align: left;
       width: 100%;
-      transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+      animation: cardReveal 420ms var(--ease-out) both;
+      animation-delay: calc(var(--card-i, 0) * 45ms);
+      transition: transform 220ms var(--ease-out), border-color var(--transition-fast), box-shadow var(--transition-fast);
     }
 
     .student-card:hover {
@@ -1251,8 +1302,13 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
     .modal-dialog {
@@ -1266,7 +1322,7 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      animation: popUp 220ms var(--ease-out);
+      animation: popUp 300ms cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .modal-dialog.modal-lg {
@@ -1279,8 +1335,127 @@
     }
 
     @keyframes popUp {
-      from { opacity: 0; transform: translateY(14px) scale(0.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      from {
+        opacity: 0;
+        transform: translateY(22px) scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes zoomPop {
+      from {
+        opacity: 0;
+        transform: scale(0.88);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .detail-avatar-btn {
+      position: relative;
+      width: 78px;
+      height: 78px;
+      border-radius: 18px;
+      flex-shrink: 0;
+      overflow: hidden;
+      background: var(--accent-soft);
+      border: 2px solid var(--accent-border);
+      display: grid;
+      place-items: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--accent-text);
+      cursor: zoom-in;
+      transition: transform 200ms var(--ease-out), border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .detail-avatar-btn:hover {
+      transform: scale(1.04);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-soft);
+    }
+
+    .detail-avatar-btn:active {
+      transform: scale(0.97);
+    }
+
+    .detail-avatar-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .detail-avatar-zoom-badge {
+      position: absolute;
+      right: 4px;
+      bottom: 4px;
+      width: 22px;
+      height: 22px;
+      border-radius: 7px;
+      background: rgba(11, 15, 20, 0.78);
+      color: #F3F6FA;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      display: grid;
+      place-items: center;
+      pointer-events: none;
+    }
+
+    .photo-zoom-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      animation: zoomPop 260ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .photo-zoom-img {
+      width: 100%;
+      max-height: 62dvh;
+      object-fit: contain;
+      border-radius: 14px;
+      background: #05080B;
+    }
+
+    .form-actions-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+      flex-wrap: nowrap;
+    }
+
+    @media (max-width: 520px) {
+      .form-actions-row .btn {
+        flex: 1 1 0;
+        padding: 10px 10px;
+        font-size: 0.84rem;
+      }
+    }
+
+    @keyframes editFlash {
+      0% {
+        box-shadow: 0 0 0 0 var(--accent);
+      }
+
+      40% {
+        box-shadow: 0 0 0 4px var(--accent-soft);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 transparent;
+      }
+    }
+
+    .form-edit-flash {
+      border-radius: var(--radius-card);
+      animation: editFlash 900ms var(--ease-out);
     }
 
     .modal-head {
@@ -1588,8 +1763,15 @@
     }
 
     @keyframes slideInRight {
-      from { opacity: 0; transform: translateX(20px); }
-      to { opacity: 1; transform: translateX(0); }
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
 
     /* Lightbox specifics */
@@ -1610,6 +1792,7 @@
     }
   </style>
 </head>
+
 <body>
   <!-- Toast Notifications -->
   <div class="toast-container" id="toast-container" aria-live="polite"></div>
@@ -1619,7 +1802,8 @@
     <div class="container topbar-inner">
       <a href="#beranda" class="brand">
         <div class="brand-mark" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 2L19 5.5V11.5C19 16.5 16 20.5 12 22C8 20.5 5 16.5 5 11.5V5.5L12 2Z" />
             <path d="M9 12.5L11.2 14.7L15.5 10" />
           </svg>
@@ -1632,8 +1816,8 @@
 
       <nav class="nav-links" aria-label="Navigasi utama">
         <a href="#beranda" class="nav-link active" data-nav="beranda">Beranda</a>
-        <a href="#statistik" class="nav-link" data-nav="statistik">Statistik</a>
         <a href="#santri" class="nav-link" data-nav="santri">Santri</a>
+        <a href="#statistik" class="nav-link" data-nav="statistik">Statistik</a>
         <a href="#galeri" class="nav-link" data-nav="galeri">Galeri</a>
       </nav>
 
@@ -1643,18 +1827,32 @@
           <span class="sync-label" id="sync-status-text">Mode Lokal</span>
         </div>
 
-        <button class="icon-btn" id="theme-toggle-btn" type="button" aria-label="Ganti mode terang atau gelap" title="Ubah Tema">
-          <svg id="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
-            <circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>
+        <button class="icon-btn" id="theme-toggle-btn" type="button" aria-label="Ganti mode terang atau gelap"
+          title="Ubah Tema">
+          <svg id="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2" />
+            <path d="M12 20v2" />
+            <path d="m4.93 4.93 1.41 1.41" />
+            <path d="m17.66 17.66 1.41 1.41" />
+            <path d="M2 12h2" />
+            <path d="M20 12h2" />
+            <path d="m6.34 17.66-1.41 1.41" />
+            <path d="m19.07 4.93-1.41 1.41" />
           </svg>
-          <svg id="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+          <svg id="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
           </svg>
         </button>
 
-        <button class="icon-btn icon-btn-admin" id="admin-open-btn" type="button" aria-label="Panel Admin" title="Panel Admin">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        <button class="icon-btn icon-btn-admin" id="admin-open-btn" type="button" aria-label="Panel Admin"
+          title="Panel Admin">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
           </svg>
         </button>
       </div>
@@ -1669,18 +1867,26 @@
           <div class="hero-eyebrow">Komunitas Kajian Remaja Putra</div>
           <h1 class="hero-title">Santri Strong <span>Cimalela</span></h1>
           <p class="hero-sub">
-            Wadah tumbuh bersama dalam ilmu, akhlak, dan kebersamaan bagi generasi muda Cimalela yang kuat iman dan sehat raga.
+            Wadah tumbuh bersama dalam ilmu, akhlak, dan kebersamaan bagi generasi muda Cimalela yang kuat iman dan
+            sehat raga.
           </p>
           <div class="hero-ctas">
             <a href="#santri" class="btn btn-primary">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
               </svg>
               Biodata Santri
             </a>
             <a href="#galeri" class="btn btn-secondary">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                <circle cx="9" cy="9" r="2" />
+                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
               </svg>
               Galeri Kegiatan
             </a>
@@ -1690,17 +1896,24 @@
         <aside class="quote-card" data-reveal aria-label="Hadits dan motivasi pembuka">
           <div class="quote-card-top">
             <span class="quote-badge">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
               </svg>
               Pengingat &amp; Motivasi
             </span>
             <div class="quote-nav">
               <button class="icon-btn" id="quote-prev-btn" type="button" aria-label="Motivasi sebelumnya">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m15 18-6-6 6-6" />
+                </svg>
               </button>
               <button class="icon-btn" id="quote-next-btn" type="button" aria-label="Motivasi berikutnya">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
               </button>
             </div>
           </div>
@@ -1727,6 +1940,41 @@
       </div>
     </section>
 
+    <!-- ================= GALERI BIODATA SANTRI ================= -->
+    <section id="santri">
+      <div class="container">
+        <div class="section-head-row" data-reveal>
+          <div>
+            <h2 class="section-title">Galeri Biodata Santri</h2>
+            <p class="section-desc">Klik kartu santri untuk melihat biodata lengkap, moto hidup, dan rekap kehadirannya.
+            </p>
+          </div>
+          <span class="pill" id="student-count-pill">9 Santri</span>
+        </div>
+
+        <div class="toolbar" data-reveal>
+          <div class="search-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.3-4.3" />
+            </svg>
+            <input type="search" class="input" id="student-search" placeholder="Cari nama, kelas, atau hobi..."
+              aria-label="Cari santri" />
+          </div>
+
+          <div class="filter-pills" id="student-filters" role="group" aria-label="Filter jenjang kelas">
+            <button type="button" class="filter-btn active" data-filter="all">Semua</button>
+            <button type="button" class="filter-btn" data-filter="sd">Kelas 5</button>
+            <button type="button" class="filter-btn" data-filter="smp">SMP (7–9)</button>
+            <button type="button" class="filter-btn" data-filter="sma">SMA (10–12)</button>
+          </div>
+        </div>
+
+        <div class="students-grid" id="students-grid" data-reveal></div>
+      </div>
+    </section>
+
     <!-- ================= STATISTIK KEHADIRAN ================= -->
     <section id="statistik">
       <div class="container">
@@ -1740,7 +1988,10 @@
             <div class="kpi-top">
               <span>Total Santri</span>
               <span class="kpi-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                </svg>
               </span>
             </div>
             <div class="kpi-value" id="kpi-total-students">0</div>
@@ -1751,7 +2002,10 @@
             <div class="kpi-top">
               <span>Rata-rata Hadir</span>
               <span class="kpi-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 3v18h18" />
+                  <path d="m19 9-5 5-4-4-3 3" />
+                </svg>
               </span>
             </div>
             <div class="kpi-value" id="kpi-avg-att">0%</div>
@@ -1762,7 +2016,12 @@
             <div class="kpi-top">
               <span>Total Pertemuan</span>
               <span class="kpi-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect width="18" height="18" x="3" y="4" rx="2" />
+                  <path d="M16 2v4" />
+                  <path d="M8 2v4" />
+                  <path d="M3 10h18" />
+                </svg>
               </span>
             </div>
             <div class="kpi-value" id="kpi-total-sessions">0</div>
@@ -1773,7 +2032,14 @@
             <div class="kpi-top">
               <span>Paling Rajin</span>
               <span class="kpi-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+                  <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+                  <path d="M4 22h16" />
+                  <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
+                  <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
+                  <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
+                </svg>
               </span>
             </div>
             <div class="kpi-value" id="kpi-top-student" style="font-size:1.25rem">—</div>
@@ -1788,7 +2054,8 @@
               <span class="pill pill-accent" id="chart-badge">Terbaru</span>
             </div>
             <div class="chart-wrap" id="chart-wrap">
-              <svg class="chart-svg" id="attendance-chart" role="img" aria-label="Diagram statistik kehadiran santri"></svg>
+              <svg class="chart-svg" id="attendance-chart" role="img"
+                aria-label="Diagram statistik kehadiran santri"></svg>
               <div class="chart-tooltip" id="chart-tooltip"></div>
             </div>
           </div>
@@ -1801,37 +2068,6 @@
             <div class="rank-list" id="attendance-rank-list"></div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- ================= GALERI BIODATA SANTRI ================= -->
-    <section id="santri">
-      <div class="container">
-        <div class="section-head-row" data-reveal>
-          <div>
-            <h2 class="section-title">Galeri Biodata Santri</h2>
-            <p class="section-desc">Klik kartu santri untuk melihat biodata lengkap, moto hidup, dan rekap kehadirannya.</p>
-          </div>
-          <span class="pill" id="student-count-pill">9 Santri</span>
-        </div>
-
-        <div class="toolbar" data-reveal>
-          <div class="search-box">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
-            </svg>
-            <input type="search" class="input" id="student-search" placeholder="Cari nama, kelas, atau hobi..." aria-label="Cari santri" />
-          </div>
-
-          <div class="filter-pills" id="student-filters" role="group" aria-label="Filter jenjang kelas">
-            <button type="button" class="filter-btn active" data-filter="all">Semua</button>
-            <button type="button" class="filter-btn" data-filter="sd">Kelas 5</button>
-            <button type="button" class="filter-btn" data-filter="smp">SMP (7–9)</button>
-            <button type="button" class="filter-btn" data-filter="sma">SMA (10–12)</button>
-          </div>
-        </div>
-
-        <div class="students-grid" id="students-grid" data-reveal></div>
       </div>
     </section>
 
@@ -1871,19 +2107,40 @@
   <!-- Mobile Bottom Navigation -->
   <nav class="bottom-nav" aria-label="Navigasi seluler">
     <a href="#beranda" class="bottom-nav-item active" data-nav="beranda">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+        <polyline points="9 22 9 12 15 12 15 22" />
+      </svg>
       <span>Beranda</span>
     </a>
-    <a href="#statistik" class="bottom-nav-item" data-nav="statistik">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
-      <span>Statistik</span>
-    </a>
     <a href="#santri" class="bottom-nav-item" data-nav="santri">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+      </svg>
       <span>Santri</span>
     </a>
+    <a href="#statistik" class="bottom-nav-item" data-nav="statistik">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 3v18h18" />
+        <path d="M18 17V9" />
+        <path d="M13 17V5" />
+        <path d="M8 17v-3" />
+      </svg>
+      <span>Statistik</span>
+    </a>
     <a href="#galeri" class="bottom-nav-item" data-nav="galeri">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect width="18" height="18" x="3" y="3" rx="2" />
+        <circle cx="9" cy="9" r="2" />
+        <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+      </svg>
       <span>Galeri</span>
     </a>
   </nav>
@@ -1894,10 +2151,30 @@
       <div class="modal-head">
         <h3 class="modal-title" id="student-modal-title">Biodata Santri</h3>
         <button type="button" class="icon-btn" data-close-modal="student-modal" aria-label="Tutup">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
         </button>
       </div>
       <div class="modal-body" id="student-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: PERBESAR FOTO PROFIL SANTRI ================= -->
+  <div class="modal-backdrop" id="photo-zoom-modal" style="z-index:120" role="dialog" aria-modal="true"
+    aria-labelledby="photo-zoom-title">
+    <div class="modal-dialog modal-sm" style="max-width:460px">
+      <div class="modal-head">
+        <h3 class="modal-title" id="photo-zoom-title">Foto Profil Santri</h3>
+        <button type="button" class="icon-btn" data-close-modal="photo-zoom-modal" aria-label="Tutup">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body" id="photo-zoom-body"></div>
     </div>
   </div>
 
@@ -1907,7 +2184,10 @@
       <div class="modal-head">
         <h3 class="modal-title" id="lightbox-title">Detail Kegiatan</h3>
         <button type="button" class="icon-btn" data-close-modal="lightbox-modal" aria-label="Tutup">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
         </button>
       </div>
       <div class="modal-body" id="lightbox-body"></div>
@@ -1920,11 +2200,15 @@
       <div class="modal-head">
         <h3 class="modal-title" id="pin-modal-title">Akses Panel Admin</h3>
         <button type="button" class="icon-btn" data-close-modal="pin-modal" aria-label="Tutup">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
         </button>
       </div>
       <div class="modal-body">
-        <p style="text-align:center;color:var(--text-secondary);font-size:0.88rem">Masukkan PIN Admin untuk mengelola absensi, data santri, dan galeri.</p>
+        <p style="text-align:center;color:var(--text-secondary);font-size:0.88rem">Masukkan PIN Admin untuk mengelola
+          absensi, data santri, dan galeri.</p>
         <div class="pin-dots" id="pin-dots" aria-live="polite"></div>
         <div class="pin-error" id="pin-error"></div>
         <div class="keypad" id="pin-keypad">
@@ -1959,7 +2243,10 @@
         <div style="display:flex;gap:8px;align-items:center">
           <button type="button" class="btn btn-secondary btn-sm" id="admin-lock-btn">Kunci</button>
           <button type="button" class="icon-btn" data-close-modal="admin-modal" aria-label="Tutup">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
           </button>
         </div>
       </div>
@@ -1968,7 +2255,8 @@
         <button type="button" class="admin-tab active" data-admin-tab="absensi" role="tab">Absensi Santri</button>
         <button type="button" class="admin-tab" data-admin-tab="santri" role="tab">Kelola Santri</button>
         <button type="button" class="admin-tab" data-admin-tab="galeri" role="tab">Galeri Kegiatan</button>
-        <button type="button" class="admin-tab" data-admin-tab="pengaturan" role="tab">Firebase &amp; Pengaturan</button>
+        <button type="button" class="admin-tab" data-admin-tab="pengaturan" role="tab">Pengaturan</button>
+        <button type="button" class="admin-tab" data-admin-tab="firebase" role="tab">Firebase 🔒</button>
       </div>
 
       <div class="modal-body" id="admin-tab-content"></div>
@@ -1988,7 +2276,7 @@
          Anda juga bisa mengisinya langsung lewat Panel Admin -> tab
          "Firebase & Pengaturan" lalu mengunduh file index.html jadi.
          ========================================================= */
-      const EMBEDDED_FIREBASE_CONFIG = /*__FIREBASE_CONFIG_START__*/{"apiKey":"AIzaSyBIWT8gJLidksb7Qttf8mgFCT09xGM7Nug","authDomain":"santri-strong-cimalela.firebaseapp.com","databaseURL":"https://santri-strong-cimalela-default-rtdb.asia-southeast1.firebasedatabase.app","projectId":"santri-strong-cimalela","storageBucket":"santri-strong-cimalela.firebasestorage.app","messagingSenderId":"389196239754","appId":"1:389196239754:web:b57efe4ec8bfde8ba02e73"}/*__FIREBASE_CONFIG_END__*/;
+      const EMBEDDED_FIREBASE_CONFIG = /*__FIREBASE_CONFIG_START__*/{ "apiKey": "AIzaSyBIWT8gJLidksb7Qttf8mgFCT09xGM7Nug", "authDomain": "santri-strong-cimalela.firebaseapp.com", "databaseURL": "https://santri-strong-cimalela-default-rtdb.asia-southeast1.firebasedatabase.app", "projectId": "santri-strong-cimalela", "storageBucket": "santri-strong-cimalela.firebasestorage.app", "messagingSenderId": "389196239754", "appId": "1:389196239754:web:b57efe4ec8bfde8ba02e73" }/*__FIREBASE_CONFIG_END__*/;
 
       const STORAGE_KEYS = {
         STATE: 'ssc_state_v1',
@@ -1997,6 +2285,7 @@
       };
 
       const DEFAULT_PIN = '1924';
+      const DEFAULT_FB_PIN = '192400';
 
       /* =========================================================
          PURE-JS SHA-256 (AMAN DI FILE:// MAUPUN HTTPS)
@@ -2073,6 +2362,7 @@
 
       const DEFAULT_STATE = {
         pinHash: sha256(DEFAULT_PIN),
+        fbPinHash: sha256(DEFAULT_FB_PIN),
         quotes: [
           {
             id: 'q1',
@@ -2239,6 +2529,7 @@
       let studentSearchQuery = '';
       let activityFilter = 'Semua';
       let adminUnlocked = false;
+      let firebaseTabUnlocked = false;
       let adminTab = 'absensi';
       let editingStudentId = null;
       let editingActivityId = null;
@@ -2269,6 +2560,7 @@
         if (!raw || typeof raw !== 'object') return base;
         return {
           pinHash: typeof raw.pinHash === 'string' && raw.pinHash.length === 64 ? raw.pinHash : base.pinHash,
+          fbPinHash: typeof raw.fbPinHash === 'string' && raw.fbPinHash.length === 64 ? raw.fbPinHash : base.fbPinHash,
           quotes: Array.isArray(raw.quotes) && raw.quotes.length ? raw.quotes : base.quotes,
           students: Array.isArray(raw.students) ? raw.students : base.students,
           sessions: Array.isArray(raw.sessions) ? raw.sessions : base.sessions,
@@ -2537,6 +2829,9 @@
         const el = document.getElementById(id);
         if (!el) return;
         el.classList.remove('open');
+        if (id === 'admin-modal') {
+          firebaseTabUnlocked = false;
+        }
         ScrollLock.unlock();
       }
 
@@ -2810,13 +3105,13 @@
           return;
         }
 
-        grid.innerHTML = filtered.map((st) => {
+        grid.innerHTML = filtered.map((st, idx) => {
           const stats = getStudentAttendanceStats(st.id);
           const avatarContent = st.photo
             ? `<img src="${escapeHtml(st.photo)}" alt="Foto ${escapeHtml(st.name)}" loading="lazy" />`
             : `<span>${escapeHtml(getInitials(st.name))}</span>`;
           return `
-            <button type="button" class="student-card" data-student-id="${escapeHtml(st.id)}">
+            <button type="button" class="student-card" style="--card-i:${idx}" data-student-id="${escapeHtml(st.id)}">
               <div class="student-head">
                 <div class="avatar">${avatarContent}</div>
                 <div class="student-meta">
@@ -2859,13 +3154,21 @@
         document.getElementById('student-modal-title').textContent = st.name;
         document.getElementById('student-modal-body').innerHTML = `
           <div style="display:flex;align-items:center;gap:16px;margin-bottom:18px">
-            <div class="avatar" style="width:76px;height:76px;font-size:1.5rem;border-radius:18px">${avatarContent}</div>
+            <button type="button" class="detail-avatar-btn" id="detail-avatar-zoom-btn" aria-label="Perbesar foto ${escapeHtml(st.name)}" title="Klik untuk memperbesar foto">
+              ${avatarContent}
+              <span class="detail-avatar-zoom-badge" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/>
+                </svg>
+              </span>
+            </button>
             <div>
               <div style="font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:6px">${escapeHtml(st.name)}</div>
               <div style="display:flex;flex-wrap:wrap;gap:6px">
                 <span class="pill pill-accent">${escapeHtml(st.grade)}</span>
                 <span class="pill">Hobi: ${escapeHtml(st.hobby)}</span>
               </div>
+              <div style="font-size:0.74rem;color:var(--text-muted);margin-top:6px">Ketuk foto untuk memperbesar</div>
             </div>
           </div>
 
@@ -2898,8 +3201,8 @@
           <h4 style="font-family:var(--font-display);font-size:0.95rem;margin-bottom:10px">Riwayat Pertemuan (${stats.pct}% Hadir)</h4>
           <div style="display:flex;flex-direction:column;gap:8px">
             ${stats.history.length ? stats.history.map((h) => {
-              const b = statusBadge[h.status] || statusBadge.H;
-              return `
+          const b = statusBadge[h.status] || statusBadge.H;
+          return `
                 <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 12px;background:var(--bg-surface-2);border-radius:10px;font-size:0.84rem">
                   <div>
                     <div style="font-weight:600">${escapeHtml(h.topic)}</div>
@@ -2908,10 +3211,40 @@
                   <span style="font-weight:700;color:${b.color};flex-shrink:0">${b.label}</span>
                 </div>
               `;
-            }).join('') : '<div style="color:var(--text-muted);font-size:0.85rem">Belum ada riwayat absensi.</div>'}
+        }).join('') : '<div style="color:var(--text-muted);font-size:0.85rem">Belum ada riwayat absensi.</div>'}
           </div>
         `;
+        document.getElementById('detail-avatar-zoom-btn').addEventListener('click', () => {
+          openStudentPhotoZoom(st);
+        });
         openModal('student-modal');
+      }
+
+      function openStudentPhotoZoom(st) {
+        document.getElementById('photo-zoom-title').textContent = st.name;
+        const body = document.getElementById('photo-zoom-body');
+        if (st.photo) {
+          body.innerHTML = `
+            <div class="photo-zoom-wrap">
+              <img class="photo-zoom-img" src="${escapeHtml(st.photo)}" alt="Foto ${escapeHtml(st.name)}" />
+              <div style="text-align:center">
+                <div style="font-family:var(--font-display);font-weight:700;font-size:1.05rem">${escapeHtml(st.name)}</div>
+                <div style="font-size:0.82rem;color:var(--text-muted)">${escapeHtml(st.grade)} &bull; ${escapeHtml(st.hobby)}</div>
+              </div>
+            </div>
+          `;
+        } else {
+          body.innerHTML = `
+            <div class="photo-zoom-wrap" style="padding:16px 0">
+              <div class="avatar" style="width:180px;height:180px;border-radius:28px;font-size:3.5rem">${escapeHtml(getInitials(st.name))}</div>
+              <div style="text-align:center">
+                <div style="font-family:var(--font-display);font-weight:700;font-size:1.05rem">${escapeHtml(st.name)}</div>
+                <div style="font-size:0.82rem;color:var(--text-muted);margin-top:4px">Foto profil belum diunggah melalui Panel Admin.</div>
+              </div>
+            </div>
+          `;
+        }
+        openModal('photo-zoom-modal');
       }
 
       function renderGallery() {
@@ -3100,6 +3433,7 @@
 
       document.getElementById('admin-lock-btn').addEventListener('click', () => {
         adminUnlocked = false;
+        firebaseTabUnlocked = false;
         document.getElementById('admin-open-btn').classList.remove('is-unlocked');
         closeModal('admin-modal');
         showToast('Panel Admin dikunci kembali.');
@@ -3118,11 +3452,33 @@
         });
       });
 
+      function scrollToAdminForm(container, focusId, formId) {
+        container.scrollTo({ top: 0, behavior: 'smooth' });
+        const form = formId ? document.getElementById(formId) : null;
+        if (form) {
+          form.classList.remove('form-edit-flash');
+          void form.offsetWidth;
+          form.classList.add('form-edit-flash');
+        }
+        setTimeout(() => {
+          const input = document.getElementById(focusId);
+          if (input) {
+            input.focus({ preventScroll: true });
+            if (typeof input.select === 'function' && input.type === 'text') {
+              const len = input.value.length;
+              input.setSelectionRange(len, len);
+            }
+          }
+        }, 220);
+      }
+
       function renderAdminTab() {
         const container = document.getElementById('admin-tab-content');
+        container.scrollTop = 0;
         if (adminTab === 'absensi') renderAdminAbsensi(container);
         else if (adminTab === 'santri') renderAdminSantri(container);
         else if (adminTab === 'galeri') renderAdminGaleri(container);
+        else if (adminTab === 'firebase') renderAdminFirebase(container);
         else renderAdminPengaturan(container);
       }
 
@@ -3155,8 +3511,8 @@
 
             <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px" id="att-students-list">
               ${state.students.map((st) => {
-                const cur = editingSes && editingSes.records ? (editingSes.records[st.id] || 'H') : 'H';
-                return `
+          const cur = editingSes && editingSes.records ? (editingSes.records[st.id] || 'H') : 'H';
+          return `
                   <div class="att-row" data-att-student="${escapeHtml(st.id)}">
                     <div>
                       <div style="font-weight:600;font-size:0.9rem">${escapeHtml(st.name)}</div>
@@ -3164,17 +3520,17 @@
                     </div>
                     <div class="att-btn-group">
                       ${['H', 'I', 'S', 'A'].map((code) => {
-                        const label = code === 'H' ? 'Hadir' : code === 'I' ? 'Izin' : code === 'S' ? 'Sakit' : 'Alfa';
-                        return `<button type="button" class="att-choice ${cur === code ? 'selected' : ''}" data-status="${code}">${label}</button>`;
-                      }).join('')}
+            const label = code === 'H' ? 'Hadir' : code === 'I' ? 'Izin' : code === 'S' ? 'Sakit' : 'Alfa';
+            return `<button type="button" class="att-choice ${cur === code ? 'selected' : ''}" data-status="${code}">${label}</button>`;
+          }).join('')}
                     </div>
                   </div>
                 `;
-              }).join('')}
+        }).join('')}
             </div>
 
-            <div style="display:flex;gap:10px;flex-wrap:wrap">
-              <button type="submit" class="btn btn-primary">${editingSes ? 'Simpan Perubahan Absensi' : 'Simpan Absensi Baru'}</button>
+            <div class="form-actions-row">
+              <button type="submit" class="btn btn-primary">${editingSes ? 'Simpan Perubahan' : 'Simpan Absensi Baru'}</button>
               ${editingSes ? '<button type="button" class="btn btn-secondary" id="cancel-edit-ses">Batal Edit</button>' : ''}
             </div>
           </form>
@@ -3183,9 +3539,9 @@
           <h4 style="font-family:var(--font-display);font-size:0.95rem;margin-bottom:8px">Riwayat Pertemuan (${sortedSessions.length})</h4>
           <div class="admin-list">
             ${sortedSessions.map((ses) => {
-              const vals = Object.values(ses.records || {});
-              const hCount = vals.filter((v) => v === 'H').length;
-              return `
+          const vals = Object.values(ses.records || {});
+          const hCount = vals.filter((v) => v === 'H').length;
+          return `
                 <div class="admin-item">
                   <div class="admin-item-info">
                     <div style="min-width:0">
@@ -3199,7 +3555,7 @@
                   </div>
                 </div>
               `;
-            }).join('')}
+        }).join('')}
           </div>
         `;
 
@@ -3255,6 +3611,7 @@
           btn.addEventListener('click', () => {
             editingSessionId = btn.getAttribute('data-edit-ses');
             renderAdminAbsensi(container);
+            scrollToAdminForm(container, 'ses-topic', 'absensi-form');
           });
         });
 
@@ -3310,8 +3667,8 @@
                 </div>
               </div>
             </div>
-            <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
-              <button type="submit" class="btn btn-primary">${editing ? 'Simpan Perubahan Santri' : 'Tambah Santri'}</button>
+            <div class="form-actions-row">
+              <button type="submit" class="btn btn-primary">${editing ? 'Simpan Perubahan' : 'Tambah Santri'}</button>
               ${editing ? '<button type="button" class="btn btn-secondary" id="st-cancel-edit">Batal Edit</button>' : ''}
             </div>
           </form>
@@ -3320,10 +3677,10 @@
           <h4 style="font-family:var(--font-display);font-size:0.95rem;margin-bottom:8px">Daftar Santri (${state.students.length})</h4>
           <div class="admin-list">
             ${state.students.map((st) => {
-              const av = st.photo
-                ? `<img src="${escapeHtml(st.photo)}" alt="${escapeHtml(st.name)}" />`
-                : `<span>${escapeHtml(getInitials(st.name))}</span>`;
-              return `
+          const av = st.photo
+            ? `<img src="${escapeHtml(st.photo)}" alt="${escapeHtml(st.name)}" />`
+            : `<span>${escapeHtml(getInitials(st.name))}</span>`;
+          return `
                 <div class="admin-item">
                   <div class="admin-item-info">
                     <div class="avatar" style="width:42px;height:42px;border-radius:10px;font-size:0.9rem">${av}</div>
@@ -3338,7 +3695,7 @@
                   </div>
                 </div>
               `;
-            }).join('')}
+        }).join('')}
           </div>
         `;
 
@@ -3402,6 +3759,7 @@
             const found = state.students.find((s) => s.id === editingStudentId);
             tempPhotoDataUrl = found ? (found.photo || '') : '';
             renderAdminSantri(container);
+            scrollToAdminForm(container, 'st-name', 'student-form');
           });
         });
 
@@ -3441,8 +3799,8 @@
                 <label class="form-label" for="act-cat">Kategori</label>
                 <select id="act-cat" class="input">
                   ${['Kajian Rutin', 'Futsal & Olahraga', 'Kebersamaan'].map((cat) =>
-                    `<option value="${escapeHtml(cat)}" ${editing && editing.category === cat ? 'selected' : ''}>${escapeHtml(cat)}</option>`
-                  ).join('')}
+          `<option value="${escapeHtml(cat)}" ${editing && editing.category === cat ? 'selected' : ''}>${escapeHtml(cat)}</option>`
+        ).join('')}
                 </select>
               </div>
               <div class="form-group">
@@ -3557,32 +3915,10 @@
         });
       }
 
-      /* --- TAB 4: FIREBASE & PENGATURAN --- */
+      /* --- TAB 4: PENGATURAN UMUM --- */
       function renderAdminPengaturan(container) {
-        const currentCfg = getFirebaseConfig();
-        const cfgString = currentCfg ? JSON.stringify(currentCfg, null, 2) : '';
-
         container.innerHTML = `
-          <div class="info-box" style="margin-bottom:18px">
-            <strong>Status Database Cloud:</strong> ${firebaseConnected ? 'Terhubung ke Firebase Realtime Database' : (currentCfg ? 'Menghubungkan / Cek Rules Firebase' : 'Belum dikonfigurasi (sedang menggunakan penyimpanan lokal perangkat ini)')}.<br/>
-            Agar perubahan dari Panel Admin langsung tampil di HP semua santri di GitHub Pages, tempel konfigurasi proyek Firebase gratis Anda (<code>Spark Plan</code>) di bawah ini, lalu klik <strong>Unduh index.html Terkonfigurasi</strong> untuk diunggah ke GitHub.
-          </div>
-
-          <h4 style="font-family:var(--font-display);font-size:0.98rem;margin-bottom:10px">1. Koneksi Firebase Realtime Database</h4>
-          <form id="fb-config-form" style="margin-bottom:20px">
-            <div class="form-group" style="margin-bottom:10px">
-              <label class="form-label" for="fb-json-input">Tempel objek <code>firebaseConfig</code> (JSON atau cuplikan JS dari Firebase Console)</label>
-              <textarea id="fb-json-input" rows="5" class="input" style="font-family:var(--font-mono);font-size:0.78rem" placeholder='{&#10;  "apiKey": "AIzaSy...",&#10;  "authDomain": "projek.firebaseapp.com",&#10;  "databaseURL": "https://projek-default-rtdb.asia-southeast1.firebasedatabase.app",&#10;  "projectId": "projek",&#10;  "appId": "1:123:web:abc"&#10;}'>${escapeHtml(cfgString)}</textarea>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:8px">
-              <button type="submit" class="btn btn-primary btn-sm">Hubungkan &amp; Simpan Config</button>
-              <button type="button" class="btn btn-secondary btn-sm" id="fb-seed-btn">Kirim Data Lokal ke Firebase</button>
-              <button type="button" class="btn btn-secondary btn-sm" id="download-configured-html">Unduh index.html Terkonfigurasi</button>
-            </div>
-          </form>
-
-          <hr style="border:none;border-top:1px solid var(--border-subtle);margin:20px 0" />
-          <h4 style="font-family:var(--font-display);font-size:0.98rem;margin-bottom:10px">2. Tambah Kalimat Motivasi / Hadits Pembuka</h4>
+          <h4 style="font-family:var(--font-display);font-size:0.98rem;margin-bottom:10px">1. Tambah Kalimat Motivasi / Hadits Pembuka</h4>
           <form id="quote-add-form" style="margin-bottom:16px">
             <div class="form-grid">
               <div class="form-group full">
@@ -3617,10 +3953,10 @@
           </div>
 
           <hr style="border:none;border-top:1px solid var(--border-subtle);margin:20px 0" />
-          <h4 style="font-family:var(--font-display);font-size:0.98rem;margin-bottom:10px">3. Ubah PIN Admin &amp; Backup Data</h4>
+          <h4 style="font-family:var(--font-display);font-size:0.98rem;margin-bottom:10px">2. Ubah PIN Panel Admin &amp; Backup Data</h4>
           <form id="pin-change-form" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin-bottom:16px">
             <div class="form-group" style="flex:1 1 160px">
-              <label class="form-label" for="new-pin-input">PIN Baru (4–8 Angka)</label>
+              <label class="form-label" for="new-pin-input">PIN Admin Baru (4–8 Angka)</label>
               <input type="password" inputmode="numeric" pattern="[0-9]{4,8}" id="new-pin-input" class="input" placeholder="Contoh: 1924" required />
             </div>
             <button type="submit" class="btn btn-secondary">Ganti PIN</button>
@@ -3634,91 +3970,6 @@
             </label>
           </div>
         `;
-
-        document.getElementById('fb-config-form').addEventListener('submit', (e) => {
-          e.preventDefault();
-          const rawText = document.getElementById('fb-json-input').value.trim();
-          if (!rawText) {
-            localStorage.removeItem(STORAGE_KEYS.FB_CONFIG);
-            initFirebase();
-            showToast('Konfigurasi Firebase lokal dihapus.');
-            renderAdminPengaturan(container);
-            return;
-          }
-          try {
-            // Dukung JSON murni maupun paste langsung JS object dari Firebase Console
-            const cleanedLines = rawText.replace(/^\s*\/\/.*$/gm, '').trim();
-            const objMatch = cleanedLines.match(/\{[\s\S]*\}/);
-            if (!objMatch) {
-              throw new Error('Tidak menemukan objek konfigurasi { ... }.');
-            }
-            const normalized = objMatch[0]
-              .replace(/([{,]\s*)([a-zA-Z0-9_]+)\s*:/g, '$1"$2":')
-              .replace(/'/g, '"')
-              .replace(/,\s*([}\]])/g, '$1');
-            const parsed = JSON.parse(normalized);
-            if (!parsed.databaseURL) {
-              throw new Error('Field "databaseURL" wajib ada (aktifkan Realtime Database di Firebase Console).');
-            }
-            localStorage.setItem(STORAGE_KEYS.FB_CONFIG, JSON.stringify(parsed));
-            initFirebase();
-            showToast('Firebase terkonfigurasi! Menghubungkan...');
-            setTimeout(() => renderAdminPengaturan(container), 800);
-          } catch (err) {
-            showToast('Format config tidak valid: ' + err.message, true);
-          }
-        });
-
-        document.getElementById('fb-seed-btn').addEventListener('click', async () => {
-          if (!firebaseDb) {
-            showToast('Hubungkan Firebase terlebih dahulu.', true);
-            return;
-          }
-          await persistState('Seluruh data berhasil diunggah ke Firebase Cloud!');
-        });
-
-        document.getElementById('download-configured-html').addEventListener('click', () => {
-          const cfg = getFirebaseConfig();
-          if (!cfg) {
-            showToast('Isi dan simpan konfigurasi Firebase terlebih dahulu.', true);
-            return;
-          }
-          const clonedDoc = document.documentElement.cloneNode(true);
-          clonedDoc.setAttribute('data-theme', 'dark');
-          const clonedBody = clonedDoc.querySelector('body');
-          if (clonedBody) clonedBody.removeAttribute('style');
-          clonedDoc.querySelectorAll('.modal-backdrop.open').forEach((m) => m.classList.remove('open'));
-          clonedDoc.querySelectorAll('[data-reveal]').forEach((el) => el.classList.remove('is-visible'));
-          const adminBtn = clonedDoc.getElementById('admin-open-btn');
-          if (adminBtn) adminBtn.classList.remove('is-unlocked');
-          const syncPill = clonedDoc.getElementById('sync-status-pill');
-          if (syncPill) syncPill.classList.remove('is-cloud');
-          ['toast-container', 'students-grid', 'gallery-grid', 'attendance-chart', 'attendance-rank-list', 'student-modal-body', 'lightbox-body', 'admin-tab-content', 'pin-dots', 'pin-error'].forEach((id) => {
-            const el = clonedDoc.getElementById(id);
-            if (el) el.innerHTML = '';
-          });
-
-          const currentHtml = '<!DOCTYPE html>\n' + clonedDoc.outerHTML;
-          const markerRegex = /\/\*__FIREBASE_CONFIG_START__\*\/[\s\S]*?\/\*__FIREBASE_CONFIG_END__\*\//;
-          if (!markerRegex.test(currentHtml)) {
-            showToast('Gagal menanam config otomatis. Pastikan menggunakan file asli.', true);
-            return;
-          }
-          const startTag = '\x2f*__FIREBASE_CONFIG_START__*\x2f';
-          const endTag = '\x2f*__FIREBASE_CONFIG_END__*\x2f';
-          const updatedHtml = currentHtml.replace(
-            markerRegex,
-            `${startTag}${JSON.stringify(cfg)}${endTag}`
-          );
-          const blob = new Blob([updatedHtml], { type: 'text/html;charset=utf-8' });
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = 'index.html';
-          a.click();
-          URL.revokeObjectURL(url);
-          showToast('File index.html siap-upload GitHub berhasil diunduh!');
-        });
 
         document.getElementById('quote-add-form').addEventListener('submit', async (e) => {
           e.preventDefault();
@@ -3781,6 +4032,188 @@
         });
       }
 
+      /* --- TAB 5: FIREBASE (TERPROTEKSI PASSWORD TAMBAHAN) --- */
+      function renderAdminFirebase(container) {
+        if (!firebaseTabUnlocked) {
+          container.innerHTML = `
+            <div style="max-width:400px;margin:16px auto;text-align:center">
+              <div class="kpi-icon" style="width:52px;height:52px;border-radius:14px;margin:0 auto 14px">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
+              <h4 style="font-family:var(--font-display);font-size:1.1rem;margin-bottom:6px">Tab Firebase Terkunci</h4>
+              <p style="font-size:0.86rem;color:var(--text-secondary);margin-bottom:16px">
+                Masukkan Password / PIN Khusus Firebase agar konfigurasi database cloud tetap aman dari perubahan yang tidak disengaja.
+              </p>
+              <form id="fb-unlock-form" style="display:flex;flex-direction:column;gap:10px;text-align:left">
+                <div class="form-group">
+                  <label class="form-label" for="fb-unlock-input">Password / PIN Firebase</label>
+                  <input type="password" id="fb-unlock-input" class="input" placeholder="Masukkan password Firebase..." autocomplete="off" required />
+                </div>
+                <div id="fb-unlock-error" style="font-size:0.8rem;color:var(--status-danger);min-height:18px;font-weight:600"></div>
+                <button type="submit" class="btn btn-primary" style="width:100%">Buka Pengaturan Firebase</button>
+              </form>
+            </div>
+          `;
+
+          setTimeout(() => {
+            const inp = document.getElementById('fb-unlock-input');
+            if (inp) inp.focus();
+          }, 80);
+
+          document.getElementById('fb-unlock-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const val = document.getElementById('fb-unlock-input').value;
+            if (sha256(val) === state.fbPinHash) {
+              firebaseTabUnlocked = true;
+              renderAdminFirebase(container);
+            } else {
+              document.getElementById('fb-unlock-error').textContent = 'Password / PIN Firebase salah.';
+              document.getElementById('fb-unlock-input').value = '';
+              document.getElementById('fb-unlock-input').focus();
+            }
+          });
+          return;
+        }
+
+        const currentCfg = getFirebaseConfig();
+        const cfgString = currentCfg ? JSON.stringify(currentCfg, null, 2) : '';
+
+        container.innerHTML = `
+          <div class="info-box" style="margin-bottom:18px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px">
+            <div style="flex:1 1 240px">
+              <strong>Status Database Cloud:</strong> ${firebaseConnected ? 'Terhubung ke Firebase Realtime Database' : (currentCfg ? 'Menghubungkan / Cek Rules Firebase' : 'Belum dikonfigurasi (mode lokal)')}.
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm" id="fb-relock-btn">Kunci Tab Firebase</button>
+          </div>
+
+          <h4 style="font-family:var(--font-display);font-size:0.98rem;margin-bottom:10px">1. Koneksi Firebase Realtime Database</h4>
+          <form id="fb-config-form" style="margin-bottom:20px">
+            <div class="form-group" style="margin-bottom:10px">
+              <label class="form-label" for="fb-json-input">Objek <code>firebaseConfig</code> (JSON atau cuplikan JS dari Firebase Console)</label>
+              <textarea id="fb-json-input" rows="5" class="input" style="font-family:var(--font-mono);font-size:0.78rem" placeholder='{&#10;  "apiKey": "AIzaSy...",&#10;  "authDomain": "projek.firebaseapp.com",&#10;  "databaseURL": "https://projek-default-rtdb.asia-southeast1.firebasedatabase.app",&#10;  "projectId": "projek",&#10;  "appId": "1:123:web:abc"&#10;}'>${escapeHtml(cfgString)}</textarea>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <button type="submit" class="btn btn-primary btn-sm">Hubungkan &amp; Simpan Config</button>
+              <button type="button" class="btn btn-secondary btn-sm" id="fb-seed-btn">Kirim Data Lokal ke Firebase</button>
+              <button type="button" class="btn btn-secondary btn-sm" id="download-configured-html">Unduh index.html Terkonfigurasi</button>
+            </div>
+          </form>
+
+          <hr style="border:none;border-top:1px solid var(--border-subtle);margin:20px 0" />
+          <h4 style="font-family:var(--font-display);font-size:0.98rem;margin-bottom:10px">2. Ubah Password / PIN Tab Firebase</h4>
+          <form id="fb-pin-change-form" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end">
+            <div class="form-group" style="flex:1 1 200px">
+              <label class="form-label" for="new-fb-pin-input">Password / PIN Firebase Baru (min. 4 karakter)</label>
+              <input type="password" minlength="4" id="new-fb-pin-input" class="input" placeholder="Masukkan password baru..." required />
+            </div>
+            <button type="submit" class="btn btn-secondary">Simpan Password</button>
+          </form>
+        `;
+
+        document.getElementById('fb-relock-btn').addEventListener('click', () => {
+          firebaseTabUnlocked = false;
+          renderAdminFirebase(container);
+        });
+
+        document.getElementById('fb-config-form').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const rawText = document.getElementById('fb-json-input').value.trim();
+          if (!rawText) {
+            localStorage.removeItem(STORAGE_KEYS.FB_CONFIG);
+            initFirebase();
+            showToast('Konfigurasi Firebase lokal dihapus.');
+            renderAdminFirebase(container);
+            return;
+          }
+          try {
+            const cleanedLines = rawText.replace(/^\s*\/\/.*$/gm, '').trim();
+            const objMatch = cleanedLines.match(/\{[\s\S]*\}/);
+            if (!objMatch) {
+              throw new Error('Tidak menemukan objek konfigurasi { ... }.');
+            }
+            const normalized = objMatch[0]
+              .replace(/([{,]\s*)([a-zA-Z0-9_]+)\s*:/g, '$1"$2":')
+              .replace(/'/g, '"')
+              .replace(/,\s*([}\]])/g, '$1');
+            const parsed = JSON.parse(normalized);
+            if (!parsed.databaseURL) {
+              throw new Error('Field "databaseURL" wajib ada (aktifkan Realtime Database di Firebase Console).');
+            }
+            localStorage.setItem(STORAGE_KEYS.FB_CONFIG, JSON.stringify(parsed));
+            initFirebase();
+            showToast('Firebase terkonfigurasi! Menghubungkan...');
+            setTimeout(() => renderAdminFirebase(container), 800);
+          } catch (err) {
+            showToast('Format config tidak valid: ' + err.message, true);
+          }
+        });
+
+        document.getElementById('fb-seed-btn').addEventListener('click', async () => {
+          if (!firebaseDb) {
+            showToast('Hubungkan Firebase terlebih dahulu.', true);
+            return;
+          }
+          await persistState('Seluruh data berhasil diunggah ke Firebase Cloud!');
+        });
+
+        document.getElementById('download-configured-html').addEventListener('click', () => {
+          const cfg = getFirebaseConfig();
+          if (!cfg) {
+            showToast('Isi dan simpan konfigurasi Firebase terlebih dahulu.', true);
+            return;
+          }
+          const clonedDoc = document.documentElement.cloneNode(true);
+          clonedDoc.setAttribute('data-theme', 'dark');
+          const clonedBody = clonedDoc.querySelector('body');
+          if (clonedBody) clonedBody.removeAttribute('style');
+          clonedDoc.querySelectorAll('.modal-backdrop.open').forEach((m) => m.classList.remove('open'));
+          clonedDoc.querySelectorAll('[data-reveal]').forEach((el) => el.classList.remove('is-visible'));
+          const adminBtn = clonedDoc.getElementById('admin-open-btn');
+          if (adminBtn) adminBtn.classList.remove('is-unlocked');
+          const syncPill = clonedDoc.getElementById('sync-status-pill');
+          if (syncPill) syncPill.classList.remove('is-cloud');
+          ['toast-container', 'students-grid', 'gallery-grid', 'attendance-chart', 'attendance-rank-list', 'student-modal-body', 'photo-zoom-body', 'lightbox-body', 'admin-tab-content', 'pin-dots', 'pin-error'].forEach((id) => {
+            const el = clonedDoc.getElementById(id);
+            if (el) el.innerHTML = '';
+          });
+
+          const currentHtml = '<!DOCTYPE html>\n' + clonedDoc.outerHTML;
+          const markerRegex = /\/\*__FIREBASE_CONFIG_START__\*\/[\s\S]*?\/\*__FIREBASE_CONFIG_END__\*\//;
+          if (!markerRegex.test(currentHtml)) {
+            showToast('Gagal menanam config otomatis. Pastikan menggunakan file asli.', true);
+            return;
+          }
+          const startTag = '\x2f*__FIREBASE_CONFIG_START__*\x2f';
+          const endTag = '\x2f*__FIREBASE_CONFIG_END__*\x2f';
+          const updatedHtml = currentHtml.replace(
+            markerRegex,
+            `${startTag}${JSON.stringify(cfg)}${endTag}`
+          );
+          const blob = new Blob([updatedHtml], { type: 'text/html;charset=utf-8' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'index.html';
+          a.click();
+          URL.revokeObjectURL(url);
+          showToast('File index.html siap-upload GitHub berhasil diunduh!');
+        });
+
+        document.getElementById('fb-pin-change-form').addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const val = document.getElementById('new-fb-pin-input').value;
+          if (val.length < 4) {
+            showToast('Password Firebase minimal 4 karakter.', true);
+            return;
+          }
+          state.fbPinHash = sha256(val);
+          await persistState('Password tab Firebase berhasil diubah!');
+          document.getElementById('new-fb-pin-input').value = '';
+        });
+      }
+
       /* =========================================================
          SCROLL REVEAL & ACTIVE NAVIGATION OBSERVER
          ========================================================= */
@@ -3806,7 +4239,7 @@
         });
       }, { rootMargin: '-35% 0px -55% 0px' });
 
-      ['beranda', 'statistik', 'santri', 'galeri'].forEach((id) => {
+      ['beranda', 'santri', 'statistik', 'galeri'].forEach((id) => {
         const el = document.getElementById(id);
         if (el) sectionObserver.observe(el);
       });
@@ -3820,4 +4253,5 @@
     })();
   </script>
 </body>
+
 </html>
